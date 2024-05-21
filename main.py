@@ -1,9 +1,13 @@
 from aiogram import Bot, Dispatcher, types, executor
 from config import TELEGRAM_TOKEN
-from  keyboard.keyboards import get_keyboard_1,get_keyboard_2
+from keyboard.keyboards import get_keyboard_1, get_keyboard_2
+from keyboard.key_inline import get_keyboard_inline
 
-bot = Bot(token=TELEGRAM_TOKEN)
+
+
+bot = Bot(token= TELEGRAM_TOKEN)
 dp = Dispatcher(bot)
+
 
 
 async def set_commands(bot: Bot):
@@ -21,7 +25,7 @@ async def start(message: types.Message):
 
 @dp.message_handler(lambda message: message.text =='Отправь фото АК')
 async  def button_1_click(message:types.Message):
-    await bot.send_photo(message.chat.id, photo='https://upload.wikimedia.org/wikipedia/commons/f/fa/Ak74l.jpg?20130919161751',caption='Результат')
+    await bot.send_photo(message.chat.id, photo='https://upload.wikimedia.org/wikipedia/commons/f/fa/Ak74l.jpg?20130919161751',caption='Результат', reply_markup=get_keyboard_inline())
 
 @dp.message_handler(lambda message: message.text =='Перейти на следующую клавиатуру')
 async  def button_2_click(message:types.Message):
